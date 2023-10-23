@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en_EN">
+    <head>
+        <meta charset="UTF-8">
+        <!-- title and description -->
+        <title>Slider - memory training game</title>
+        <meta name="description" content="simple slider game for memory training with the ability to compete with other players">
+        <!-- viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- styles -->
+        <link rel="stylesheet" href="styles/style.css" type="text/css">
+        <!-- icons -->
+        <link rel="icon" href="favicon.png"> <!--32х32-->
+        <link rel="apple-touch-icon" href="src/icons/touch-icon-iphone.png"> <!--60х60-->
+        <link rel="apple-touch-icon" sizes="76x76" href="src/icons/touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="src/icons/touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="src/icons/touch-icon-ipad-retina.png">
+        <!-- open graph -->
+        <meta property="og:title" content="Slider - memory training game" />
+        <meta property="og:image" content="src/icons/og.png" /> <!-- OG image is 1200×630 pixels  -->
+        <meta property="og:description" content="simple slider game for memory training with the ability to compete with other players" /> <!-- not important -->
+        <meta property="og:locale" content="en_EN" /> <!-- default: "en_US" -->
+
+        <!-- Yandex Games SDK -->
+        <!--<script src="https://yandex.ru/games/sdk/v2"></script>-->
+    </head>
+
+    <body>       
+        <!-- start simulation Yandex -->
+        <!---->
+        <script>
+            YaGames = {
+                caption:'simulation Yandex',
+                init() {
+                    return new Promise((resolve, reject) => {
+                        resolve({
+
+                            getLeaderboards() {
+                                return new Promise((resolve, reject) => {
+                                    resolve({
+
+                                        getLeaderboardEntries() {
+                                            return new Promise((resolve, reject) => {
+
+                                                resolve({
+                                                    data: 'RECORDS TABLE',
+                                                    entries: [
+                                                        { formattedScore: "19764", score: 19764, rank:      1, player: {publicName: ''} },
+                                                        { formattedScore: "19622", score: 19622, rank:      2, player: {publicName: 'no name 1'} },
+                                                        { formattedScore: "19512", score: 19512, rank:      3, player: {publicName: 'no name 1'} },
+                                                        { formattedScore:  "7931", score:  7931, rank:  99999, player: {publicName: ''} },
+                                                        { formattedScore:   "191", score:   191, rank: 100000, player: {publicName: ''} },
+                                                        { formattedScore:   "189", score:   189, rank: 100001, player: {publicName: 'ЩЩШШШШШШШШШШШШ'} },
+                                                        { formattedScore:   "187", score:   187, rank: 100002, player: {publicName: 'no name 3'} },
+                                                        { formattedScore:   "183", score:   183, rank: 100003, player: {publicName: ''} },
+                                                    ],
+                                                    userRank: 100001,
+                                                });
+
+                                                reject({data:'off'})
+
+                                            })
+                                        },
+
+                                        getLeaderboardPlayerEntry(resultsDataName){
+                                            return new Promise((resolve, reject) => {
+
+                                                resolve({
+                                                    data: 'PLAYER RESULT INFO',
+                                                    //
+                                                    score: 1, // число очков текущего игрока в таблицы
+                                                    rank: 12    // место текущего игрока в таблицы
+                                                    //
+                                                });
+
+                                            })
+                                        },
+
+                                        setLeaderboardScore(resultsDataName, score) {
+                                            console.log(`To ${resultsDataName} added score ${score}`)
+                                        }
+
+                                    });
+                                })
+                            },
+
+                            getPlayer() {
+                                return new Promise((resolve, reject) => {
+                                    resolve({
+                                        name: 'MarsGame',
+                                        getMode() {
+                                            return Math.random() < 0.5 ? 'lite' : 'Authorization is true'
+                                            //return 'Authorization is true'
+                                        }
+                                    });
+                                })
+                            },
+
+                            auth : {
+                                openAuthDialog() {
+                                    return new Promise((resolve, reject) => {
+                                        resolve({
+                                            name: 'MarsGame',
+                                            getMode() {
+                                                return Math.random() < 0.5 ? 'lite' : 'Authorization is true'
+                                                //return 'Authorization is true'
+                                            }
+                                        });
+                                    })
+                                }
+                            },
+
+                            adv : {
+                                showFullscreenAdv( callbackObject ) {
+                                    alert('Yandex Fullscreen Banner !!!')
+                                    callbackObject.callbacks.onClose()
+                                }
+                            },
+
+                        });
+                    })
+                }
+            }
+        </script>
+        <!---->
+        <!-- end simulation Yandex -->
+
+        <script src="./js/app.js"></script>
+    </body>
+</html>
